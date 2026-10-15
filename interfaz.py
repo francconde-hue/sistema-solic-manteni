@@ -9,7 +9,7 @@ class InterfazMantenimientoApp:
         self.root.title("Sistema de Mantenimiento de Laboratorio (POO)")
         self.root.geometry("700x680")
         
-        # Instanciar controlador/lógica del negocio
+        # Instanciar controlador
         self.admin = AdministradorMantenimiento()
         self.crear_widgets()
 
@@ -46,7 +46,7 @@ class InterfazMantenimientoApp:
         btn_ingresar = ttk.Button(self.root, text="Registrar Solicitud", command=self.ejecutar_registro)
         btn_ingresar.pack(pady=10)
         
-        # --- Listas de Visualización de Datos ---
+        #Listas de Visualización de Datos
         frame_listas = ttk.Frame(self.root, padding=10)
         frame_listas.pack(fill="both", expand=True, padx=15, pady=5)
         
@@ -93,7 +93,7 @@ class InterfazMantenimientoApp:
         
         if tipo == "URGENTE":
             messagebox.showinfo("Atendiendo Emergencia", 
-                                f"🚨 ¡ATENCIÓN INMEDIATA! 🚨\n\n"
+                                f"¡ATENCIÓN INMEDIATA!\n\n"
                                 f"ID: #{caso['id']} - {caso['equipo']}\n"
                                 f"Encargado: {caso['tecnico']}\n"
                                 f"Problema: {caso['descripcion']}\n\n"
@@ -114,7 +114,7 @@ class InterfazMantenimientoApp:
         self.lista_pila.delete(0, tk.END)
         self.lista_cola.delete(0, tk.END)
         
-        # # VISTA DE LA PILA: EL ÚLTIMO EN ENTRAR SERÁ EL PRIMERO EN SALIR
+        #VISTA DE LA PILA: EL ÚLTIMO EN ENTRAR SERÁ EL PRIMERO EN SALIR
         for caso in self.admin.pila_urgentes.ver_todos_reversa():
             self.lista_pila.insert(tk.END, f"#{caso['id']} - {caso['equipo']} (⏱️ {caso['tiempo_reaccion']})")
             
